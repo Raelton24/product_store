@@ -52,10 +52,24 @@ const ProductCard = ({product}) => {
 
       
   const handleUpdateProduct  = async (pid, updatedProduct) => {
-    await updateProduct(pid, updatedProduct);
-    // onClose();
-  }
-
+   const { success, message}  = await updateProduct(pid, updatedProduct);
+   if (!success) {
+    toaster.error({
+    title: "Error!",
+    description: message,
+    status: "error",
+    isClosable: true,
+    }); 
+  } else {
+    toaster.success({
+    title: "success",
+    description: "Product Updated successfully" ,
+    status: "success",
+    isClosable: true,
+    });
+  };
+  };
+ 
   return (
    <Box
     shadow="lg"
@@ -133,10 +147,11 @@ const ProductCard = ({product}) => {
       <DialogFooter>
 
 
-        
+      <DialogActionTrigger asChild>
         <Button bg="blue.400"
           onClick={ () => handleUpdateProduct(product._id, updatedProduct) }
         >Update</Button>
+         </DialogActionTrigger>
 
         
         <DialogActionTrigger asChild>

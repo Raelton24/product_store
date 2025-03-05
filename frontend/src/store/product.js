@@ -52,5 +52,8 @@ export const useProductStore = create((set) => ({
             products: state.products.map((product) => 
                 (product._id === pid ? data.data : product)),
         }));
+
+        // return a feed back after a successful update to the product
+        return { success: true, message: data.message };
     },
 }));
