@@ -20,9 +20,6 @@ import {
 } from "@/components/ui/dialog"
 import { useState } from "react";
 
-
-
-
 const ProductCard = ({product}) => {
     const textColor = useColorModeValue("gray.600", "gray.200");
     const bg= useColorModeValue("white", "gray.700");

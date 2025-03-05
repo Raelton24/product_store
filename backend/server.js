@@ -16,7 +16,7 @@ app.use(express.json()); // middleware for accepting JSON data in the req.body
 
 app.use("/api/products", productRouter );
 
-if (process.env.MODE_ENV === "production") {
+if (process.env.NODE_ENV === "production") {
     app.use(express.static(path.join(__dirname, "/frontend/dist")));
 
     app.get("*", (req, res) => {
