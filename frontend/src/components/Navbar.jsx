@@ -17,7 +17,7 @@ const Navbar = () => {
         flexDir={{ base: "column", sm: "row" }}
       >
         <Text
-          fontSize={{ base: 44, sm: 28 }}
+          fontSize={{ base: 28, sm: 44 }}
           fontWeight="bold"
           textTransform="uppercase"
           textAlign="center"
