@@ -71,117 +71,120 @@ const ProductCard = ({product}) => {
   };
  
   return (
-   <Box
-    shadow="lg"
-    rounded="lg"
-    overflow="hidden"
-    transition="all 0.3s"
-    _hover={{ transform: "translateY(-5px)", shadow: "xl" }}
-    bg={bg}
-   >
+    <Box
+      shadow="lg"
+      rounded="lg"
+      overflow="hidden"
+      transition="all 0.3s"
+      _hover={{ transform: "translateY(-5px)", shadow: "xl" }}
+      bg={bg}
+    >
+      <Image
+        src={product.image}
+        alt={product.name}
+        height="300px"
+        w="100%"
+        fit="cover"
+      />
 
-    <Image 
-    src = {product.image} 
-    alt = {product.name} 
-    height="300px"
-    w="100%" 
-    fit="cover" 
-    
-    />
-
-    <Box p={4}>
-        <Heading 
-        as="h3" 
-        size="md" 
-        mb={2}
-        >
-            {product.name}
+      <Box p={4}>
+        <Heading as="h3" size="md" mb={2}>
+          {product.name}
         </Heading>
 
-        <Text fontWeight="bold" 
-        fontSize="xl" 
-        color={textColor} 
-        mb={4}>
-            ${product.price}
+        <Text fontWeight="bold" fontSize="xl" color={textColor} mb={4}>
+          ${product.price}
         </Text>
 
-
-
-
         <HStack spacing={2}>
-  <DialogRoot>
-    <DialogTrigger asChild>
-      <IconButton
-        aria-label="Update Product"
-        bg="blue.500"
-        _hover={{ bg: "blue.600" }}
-        variant="ghost"
-      >
-        <LucideEdit />
-      </IconButton>
-    </DialogTrigger>
-    <DialogContent>
-      <DialogHeader>
-        <DialogTitle>Edit Product</DialogTitle>
-      </DialogHeader>
-      <DialogBody>
-        <VStack>
-          <Input placeholder="Product Name" name="name"
-           value={updatedProduct.name} 
-           onChange={(e) => setUpdatedProduct ({...updatedProduct, name: e.target.value})}
-           />
+          <DialogRoot>
+            <DialogTrigger asChild>
+              <IconButton
+                aria-label="Update Product"
+                bg="blue.500"
+                _hover={{ bg: "blue.600" }}
+                variant="ghost"
+              >
+                <LucideEdit />
+              </IconButton>
+            </DialogTrigger>
+            <DialogContent>
+              <DialogHeader>
+                <DialogTitle>Edit Product</DialogTitle>
+              </DialogHeader>
+              <DialogBody>
+                <VStack>
+                  <Input
+                    placeholder="Product Name"
+                    name="name"
+                    value={updatedProduct.name}
+                    onChange={(e) =>
+                      setUpdatedProduct({
+                        ...updatedProduct,
+                        name: e.target.value,
+                      })
+                    }
+                  />
 
-           <Input placeholder="Price" name="price" type="Number"
-           value={updatedProduct.price} 
-           onChange={(e) => setUpdatedProduct ({...updatedProduct, price: e.target.value})}
-           /> 
+                  <Input
+                    placeholder="Price"
+                    name="price"
+                    type="Number"
+                    value={updatedProduct.price}
+                    onChange={(e) =>
+                      setUpdatedProduct({
+                        ...updatedProduct,
+                        price: e.target.value,
+                      })
+                    }
+                  />
 
-         <Input placeholder="Image URL" name="image" 
-         value={updatedProduct.image}
-         onChange={(e) => setUpdatedProduct ({...updatedProduct, image: e.target.value})}
-         />
+                  <Input
+                    placeholder="Image URL"
+                    name="image"
+                    value={updatedProduct.image}
+                    onChange={(e) =>
+                      setUpdatedProduct({
+                        ...updatedProduct,
+                        image: e.target.value,
+                      })
+                    }
+                  />
+                </VStack>
+              </DialogBody>
+              <DialogFooter>
+                <DialogActionTrigger asChild>
+                  <Button
+                    bg="blue.400"
+                    onClick={() =>
+                      handleUpdateProduct(product._id, updatedProduct)
+                    }
+                  >
+                    Update
+                  </Button>
+                </DialogActionTrigger>
 
-          </VStack>
+                <DialogActionTrigger asChild>
+                  <Button variant="ghost">Cancel</Button>
+                </DialogActionTrigger>
+              </DialogFooter>
+              <DialogCloseTrigger />
+            </DialogContent>
+          </DialogRoot>
 
-      </DialogBody>
-      <DialogFooter>
-
-
-      <DialogActionTrigger asChild>
-        <Button bg="blue.400"
-          onClick={ () => handleUpdateProduct(product._id, updatedProduct) }
-        >Update</Button>
-         </DialogActionTrigger>
-
-        
-        <DialogActionTrigger asChild>
-          <Button variant="ghost">Cancel</Button>
-        </DialogActionTrigger>
-       
-      </DialogFooter>
-      <DialogCloseTrigger />
-    </DialogContent>
-  </DialogRoot>
-
-          
-
-
-        <IconButton
-          aria-label="Search database"
-          bg="red.500"
-          _hover={{ bg: "red.600" }}
-          variant="ghost"
-          onClick={ () => handleDeleteProduct (product._id)}
-        > 
-        <LuTrash2  />
-
-        </IconButton>
-
+          <IconButton
+            aria-label="Search database"
+            bg="red.500"
+            _hover={{ bg: "red.600" }}
+            variant="ghost"
+            onClick={() => handleDeleteProduct(product._id)}
+          >
+            <LuTrash2 />
+          </IconButton>
         </HStack>
+      </Box>
     </Box>
-   </Box>
-
-  )
+  );
 }
 
 
